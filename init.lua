@@ -1,5 +1,3 @@
--- C:/Users/shahid/APPDATA/Local/nvim/nvim-minimal/init.lua
-
 -- General settings
 vim.opt.scroll = 5
 vim.opt.conceallevel = 0
@@ -8,6 +6,7 @@ vim.opt.clipboard:append("unnamedplus")
 vim.wo.relativenumber = true
 vim.o.number = true
 vim.o.relativenumber = true
+vim.opt.guifont = "BlexMono Nerd Font Mono:h12"
 
 vim.g.mapleader = " "
 vim.keymap.set("n", "va", "ggVG")
@@ -29,11 +28,37 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Load configuration files
+-- Load plugins
 require("lazy").setup("plugins")
+
+require('lsp')
+
+-- Load other configurations
 require('autocommands')
 require('keybinds')
-require('plugins')
-
 
 vim.cmd("colorscheme pire")
+
+-- Prevent E28 by defining missing groups
+vim.cmd("hi def link markdownId            Identifier")
+vim.cmd("hi def link markdownLineStart     Normal")
+vim.cmd("hi def link markdownH1            Title")
+vim.cmd("hi def link markdownH2            Title")
+vim.cmd("hi def link markdownHeadingRule   Comment")
+vim.cmd("hi def link markdownRule          Comment")
+vim.cmd("hi def link markdownCode          String")
+vim.cmd("hi def link markdownCodeBlock     String")
+vim.cmd("hi def link markdownIdDeclaration Identifier")
+
+
+
+-- Aliases for uppercase/lowercase write/quit commands
+-- Workaround for Q! and W! (force versions)
+vim.cmd("cnoreabbrev Q! q!")
+vim.cmd("cnoreabbrev W! w!")
+
+-- Normal aliases
+vim.api.nvim_create_user_command("W",  "w",  {})
+vim.api.nvim_create_user_command("Q",  "q",  {})
+vim.api.nvim_create_user_command("WQ", "wq", {})
+vim.api.nvim_create_user_command("Wq", "wq", {})

@@ -44,22 +44,10 @@ return {
 
   -- Fuzzy finding
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      local telescope = require("telescope")
-      telescope.setup({
-        defaults = { 
-          file_ignore_patterns = { "node_modules", ".git" },
-          borderchars = { "█", " ", "▀", "█", "█", " ", " ", "▀" },
-        },
-      })
-      vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
-      vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
-      vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
-      vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
-    end,
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
+  { "junegunn/fzf", run = "./install --bin" },
 
   -- Commenting
   { "tpope/vim-commentary" },
@@ -146,6 +134,32 @@ return {
   { "drzel/vim-gui-zoom" },
 
   --========================================================================
+  --============================== LSP =====================================
+  --========================================================================
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    dependencies = {
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},
+      {'williamboman/mason.nvim'},
+      {'williamboman/mason-lspconfig.nvim'},
+
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'hrsh7th/cmp-nvim-lua'},
+
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},
+      {'rafamadriz/friendly-snippets'},
+    }
+  },
+
+  --========================================================================
   --============================== LANGUAGES ===============================
   --========================================================================
   
@@ -161,7 +175,7 @@ return {
   },
   { "sheerun/vim-polyglot" },
   { "vmchale/ats-vim" },
-  { "ixru/nvim-markdown" },
+  -- { "ixru/nvim-markdown" },
   { "gauteh/vim-cppman" },
   { "rescript-lang/vim-rescript", ft = "rescript" },
   { "aspeddro/rescript-tools.nvim" },

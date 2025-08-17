@@ -13,7 +13,7 @@ map("n", "<S-q>", ":q! \n");
 map("n", "<C-f>", ":lua require('fzf-lua').files() \n");
 map("n", "<leader>g", ":lua require('fzf-lua').live_grep() \n");
 map("n", "<leader>f", ":FzfLua\n");
-map("n", "<leader>t", ":Telescope\n");
+
 map("n", "<leader>R", ":FzfLua resume\n", { noremap = true, silent = true });
 
 map("n", "<F5>", ":TMUXcompile Run\n", { silent = true });
