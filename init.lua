@@ -31,11 +31,15 @@ vim.opt.rtp:prepend(lazypath)
 -- Load plugins
 require("lazy").setup("plugins")
 
-require('lsp')
+
+
+
+
 
 -- Load other configurations
 require('autocommands')
 require('keybinds')
+require("brr").setup()
 
 vim.cmd("colorscheme pire")
 
@@ -62,3 +66,14 @@ vim.api.nvim_create_user_command("W",  "w",  {})
 vim.api.nvim_create_user_command("Q",  "q",  {})
 vim.api.nvim_create_user_command("WQ", "wq", {})
 vim.api.nvim_create_user_command("Wq", "wq", {})
+
+-- Make matching braces stand out
+vim.api.nvim_set_hl(0, "MatchParen", { fg = "#ffff00", bg = "#1e1e5e", bold = true })
+
+-- Auto-override MatchParen highlight after colorscheme is applied
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--   callback = function()
+--     -- Example override: dark text (#282c34) on blue background (#61afef), bold
+--     vim.api.nvim_set_hl(0, "MatchParen", { fg = "#ffff00", bg = "#1e1e5e", bold = true })
+--   end,
+-- })

@@ -17,12 +17,24 @@ map("n", "<leader>f", ":FzfLua\n");
 map("n", "<leader>R", ":FzfLua resume\n", { noremap = true, silent = true });
 
 map("n", "<F5>", ":TMUXcompile Run\n", { silent = true });
-map("n", ",b", ":TMUXcompile Run\n", { silent = true });
+-- map("n", ",b", ":TMUXcompile Run\n", { silent = true });
 map("n", "<leader>b", ":TMUXcompile RunV\n", { silent = true });
 
 map("n", ",p", ":!opout <c-r>%\n\n");
 map("n", ",c", ":Compile\n", { silent = true });
 map("n", "<leader>r", ":Recompile\n", { silent = true });
+
+
+--Neovide Settings
+-- vim.opt.guifont = "BlexMono Nerd Font Mono:h12"
+-- vim.opt.guifont = "Inconsolata Nerd Font:h12"
+-- Zoom In/Out
+vim.keymap.set('n', '<C-=>', ':ZoomIn<CR>', { silent = true })
+vim.keymap.set('n', '<A-S-k>', ':ZoomIn<CR>', { silent = true })
+vim.keymap.set('n', '<C-->', ':ZoomOut<CR>', { silent = true })
+vim.keymap.set('n', '<A-S-j>', ':ZoomOut<CR>', { silent = true })
+
+
 
 -- Quickfix list keymaps
 map("n", "<C-k>", ":cprev\n", { noremap = true, silent = true });
@@ -150,6 +162,8 @@ local function show_compiler_output()
     vim.bo[buf].bufhidden = 'wipe'
     vim.bo[buf].swapfile = false
 
+    vim.opt.relativenumber = false
+
     if file_ext == 'java' then
       vim.bo[buf].filetype = 'log'
     elseif file_ext == 'py' then
@@ -177,3 +191,4 @@ local function show_compiler_output()
 end
 
 smap('n', '<leader>c', show_compiler_output)
+vim.keymap.set('i', '<C-Space>', 'vim.lsp.buf.completion()', {noremap = true, silent = true})
