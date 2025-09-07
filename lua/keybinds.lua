@@ -192,3 +192,12 @@ end
 
 smap('n', '<leader>c', show_compiler_output)
 vim.keymap.set('i', '<C-Space>', 'vim.lsp.buf.completion()', {noremap = true, silent = true})
+
+
+
+
+vim.keymap.set("n", "<leader>jc", function()
+  local cache_path = os.getenv("USERPROFILE") .. "\\.cache\\jdtls"
+  os.execute('rmdir /s /q "' .. cache_path .. '"')
+  print("JDTLS cache cleared from " .. cache_path)
+end, { desc = "Clear JDTLS cache" })

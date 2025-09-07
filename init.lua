@@ -77,3 +77,30 @@ vim.api.nvim_set_hl(0, "MatchParen", { fg = "#ffff00", bg = "#1e1e5e", bold = tr
 --     vim.api.nvim_set_hl(0, "MatchParen", { fg = "#ffff00", bg = "#1e1e5e", bold = true })
 --   end,
 -- })
+--
+--
+
+-- vim.cmd("NoiceDisable")
+--
+
+require("noice").setup({
+  views = {
+    notify = {
+      timeout = 333 -- message disappears after 1 second (1000ms)
+    }
+  }
+})
+
+
+
+
+
+local jdtls_config = require("jdtls_conf")
+
+-- when attaching to Java filetype
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "java",
+  callback = function()
+    require("jdtls").start_or_attach(jdtls_config)
+  end,
+})

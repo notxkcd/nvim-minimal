@@ -10,6 +10,7 @@ return {
   -- { "shaunsingh/solarized.nvim" },
   { "habamax/vim-pire" },
   { "mellow-theme/mellow.nvim" },
+  { "udalov/javap-vim" },
   {
     "navarasu/onedark.nvim",
     priority = 1000, -- make sure to load this before all the other start plugins
@@ -64,6 +65,7 @@ return {
   -- Commenting
   { "tpope/vim-commentary" },
   { 'junegunn/vim-easy-align' },
+  { 'wreien/vim-jasmin' },
 
   -- Alignment
   {
@@ -234,6 +236,12 @@ return {
       })
     end,
   },
+
+  {
+    "mfussenegger/nvim-jdtls",
+    ft = { "java" }, -- load only for Java files
+  },
+
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -333,4 +341,7 @@ return {
   },
 
 }
+
+
+
 
